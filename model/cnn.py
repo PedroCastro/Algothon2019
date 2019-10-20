@@ -1,12 +1,12 @@
-# import keras
+import keras
 import numpy as np
 import pandas as pd
-# from keras.models import Model
-# from keras.layers import Input, Dense, Dropout, Flatten, concatenate, Conv2DTranspose, UpSampling2D, Conv2D, MaxPooling2D, ZeroPadding2D, Activation, Lambda
-# from keras.optimizers import SGD, Adam
-# from keras.utils import to_categorical
-# import keras
-# import keras.backend as K
+from keras.models import Model
+from keras.layers import Input, Dense, Dropout, Flatten, concatenate, Conv2DTranspose, UpSampling2D, Conv2D, MaxPooling2D, ZeroPadding2D, Activation, Lambda
+from keras.optimizers import SGD, Adam
+from keras.utils import to_categorical
+import keras
+import keras.backend as K
 
 def get_batch(dataset, batch_size, lookback_size=20):
     while True:
@@ -75,7 +75,11 @@ def create_model():
 def main():
     dataset = pd.read_pickle("../assets/final_market_risk_supplychain.pkl")
 
-    print(dataset[dataset["Date"] >'2018-12-31'])
+    model = create_model()
+    model.summary()
+    model.compile(optimizer=SGD(lr=0.001, momentum =0.9), loss="categorical_crossentropy")
+
+    model.fit_generator(get_batch(dataset, 32), epochs=100, verbose=True)
 
 if __name__ == "__main__":
     main()
