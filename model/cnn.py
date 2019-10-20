@@ -6,7 +6,7 @@ from keras.layers import Input, Dense, Dropout, Flatten, concatenate, Conv2DTran
 from keras.optimizers import SGD, Adam
 from keras.utils import to_categorical
 import keras
-import keras.backend as K
+
 
 def get_batch(dataset, batch_size, lookback_size=20):
     while True:
