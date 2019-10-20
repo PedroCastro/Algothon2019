@@ -18,7 +18,6 @@ keys.txt
 *.so
 *.pyc
 *.idea/
-*.png
 *.pkl
 *.ipynb_checkpoints
 scripts/lesson1.py
